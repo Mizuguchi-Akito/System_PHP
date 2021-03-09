@@ -1,4 +1,4 @@
-# *図書館の本を借りるシステム作成*
+# 図書館の本を借りるシステム作成
 
 ## 班員
 水口 トップ画面	借りる画面	本確認	本確定
@@ -11,3 +11,6 @@
 
 ## 工数
 合計:20
+
+## 詳細URL
+*<https://docs.google.com/spreadsheets/d/e/2PACX-1vTPYpH7FFCYx7bgR4bJnGZqkryRr5qAVI3MB3sP69wC-_4g8P8J2YJziSVfcULlwLdlsbcP7Oma6I7x/pubhtml>*
