@@ -1,0 +1,22 @@
+/*#global_navi{
+
+}*/
+
+.current{
+    float:left;
+    width: 200px;
+    list-style: none;
+}
+#global_navi ul li a {
+    display: block;
+    padding: 16px;
+    background-color: black;
+    color: #fff;
+    text-decoration: none;
+}
+#global_navi ul li.current a {
+    background-color: #497e8a;
+}
+#global_navi ul li a:hover {
+    background-color: #c3c9d1;
+}
