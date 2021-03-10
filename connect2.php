@@ -3,9 +3,9 @@ try {
     $user = "phpuser2";
     $password = "1234";
     $opt = [
-        PDO::STTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
         PDO::ATTR_EMULATE_PREPARES => false,
-        PDO::MUSQL_ATTR_MULTI_STATEMENTS =>false,
+        PDO::MSSQL_ATTR_MULTI_STATEMENTS =>false,
 
     ];
     $sbh = new  PDO('mysql:host=localhost;dbname=sample_db', $user,$password,$opt);
