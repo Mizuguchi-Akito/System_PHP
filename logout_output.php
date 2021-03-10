@@ -1,3 +1,8 @@
+<?php session_start(); ?>
+<?php
+unset($_SESSION['customer']);
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -7,11 +12,9 @@
 </head>
 
 <body>
-	<!-- <?php
+	<?php
 		echo 'ログアウトしました。';
-	?> -->
-
-	<p>ログアウトしました。</p>
+	?>
 </body>
 
 </html>

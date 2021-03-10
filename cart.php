@@ -1,4 +1,4 @@
-
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,17 +6,32 @@
     <title>予約かご</title>
 </head>
 <body>
-    <table border="1">
+
+    <?php
+    if(!empty($_SESSION['book'])) {
+    ?>
+    <table>
+        
+        <th>タイトル</th>
+            
+        <?php
+        foreach ($_SESSION['book'] as $id => $book){
+        ?>
+        
         <tr>
-            <th>タイトル</th>
-            <th>著者名</th>
-            <th>出版社</th>
+            <td><?= $book['name'] ?></td>
+            
         </tr>
-        <tr>
-            <th></th>
-            <th></th>
-            <th></th>
-        </tr>
+        <?php
+        }
+        ?>
     </table>
+    <?php
+    } else {
+    ?>
+        カートに本がありません。
+    <?php
+    }
+    ?>
 </body>
 </html>
