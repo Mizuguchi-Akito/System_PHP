@@ -9,7 +9,6 @@
     <table>
         <tr>
             <th>タイトル</th>
-            <th>著者名</th>
             <th></th>
         </tr>
         <tr>
