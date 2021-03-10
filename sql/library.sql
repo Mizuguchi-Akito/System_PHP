@@ -1,47 +1,164 @@
-create table book (
-	id int auto_increment primary key,
-	name varchar(100) not null,
-	customer_id int not null,
-	date date,
-	foreign key(customer_id) references customer(id)
-);
+-- phpMyAdmin SQL Dump
+-- version 5.0.2
+-- https://www.phpmyadmin.net/
+--
+-- ホスト: 127.0.0.1
+-- 生成日時: 2021-03-10 03:51:27
+-- サーバのバージョン： 10.4.11-MariaDB
+-- PHP のバージョン: 7.4.6
 
-create table customer (
-	id int auto_increment primary key,
-	name varchar(30) not null,
-	password varchar(30) not null
-);
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
 
-create table borrow (
-	customer_id int not null,
-	book_id int not null,
-	date date,
-	primary key(customer_id, book_id),
-	foreign key(customer_id) references customer(id),
-	foreign key(book_id) references book(id)
-);
 
-create table favorite (
-	customer_id int not null,
-	book_id int not null,
-	primary key(customer_id, book_id),
-	foreign key(customer_id) references customer(id),
-	foreign key(book_id) references book(id)
-);
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- データベース: `group`
+--
+
+-- --------------------------------------------------------
+
+--
+-- テーブルの構造 `book`
+--
+
+CREATE TABLE `book` (
+  `id` int(100) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `customer_id` int(100) DEFAULT NULL,
+  `date` date DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- テーブルのデータのダンプ `book`
+--
 
 INSERT INTO `book` (`id`, `name`, `customer_id`, `date`) VALUES
-(1, '小説', , ),
-(2, '漫画', , ),
-(3, 'ビジネス本', , ),
-(4, '伝記', , ),
-(5, '絵本', , ),
-(6, '図鑑', , ),
-(7, '百科事典', , ),
-(8, '詩歌', , ),
-(9, '参考書', , ),
-(10, '哲学書', , );
+(1, '小説', NULL, NULL),
+(2, '漫画', NULL, NULL),
+(3, 'ビジネス本', NULL, NULL),
+(4, '伝記', NULL, NULL),
+(5, '絵本', NULL, NULL),
+(6, '図鑑', NULL, NULL),
+(7, '百科事典', NULL, NULL),
+(8, '詩歌', NULL, NULL),
+(9, '参考書', NULL, NULL),
+(10, '哲学書', NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- テーブルの構造 `borrow`
+--
+
+CREATE TABLE `borrow` (
+  `customer_id` int(11) NOT NULL,
+  `book_id` int(11) NOT NULL,
+  `date` date DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- テーブルの構造 `customer`
+--
+
+CREATE TABLE `customer` (
+  `id` int(11) NOT NULL,
+  `name` varchar(50) NOT NULL,
+  `password` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- テーブルのデータのダンプ `customer`
+--
 
 INSERT INTO `customer` (`id`, `name`, `password`) VALUES
 (1, '大原一郎', 'abc'),
 (2, '中原二郎', 'def'),
 (3, '小原三郎', 'ghi');
+
+-- --------------------------------------------------------
+
+--
+-- テーブルの構造 `favorite`
+--
+
+CREATE TABLE `favorite` (
+  `customer_id` int(11) NOT NULL,
+  `book_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- ダンプしたテーブルのインデックス
+--
+
+--
+-- テーブルのインデックス `book`
+--
+ALTER TABLE `book`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- テーブルのインデックス `borrow`
+--
+ALTER TABLE `borrow`
+  ADD PRIMARY KEY (`customer_id`,`book_id`),
+  ADD KEY `book_id` (`book_id`);
+
+--
+-- テーブルのインデックス `customer`
+--
+ALTER TABLE `customer`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- テーブルのインデックス `favorite`
+--
+ALTER TABLE `favorite`
+  ADD PRIMARY KEY (`customer_id`,`book_id`),
+  ADD KEY `book_id` (`book_id`);
+
+--
+-- ダンプしたテーブルのAUTO_INCREMENT
+--
+
+--
+-- テーブルのAUTO_INCREMENT `book`
+--
+ALTER TABLE `book`
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- テーブルのAUTO_INCREMENT `customer`
+--
+ALTER TABLE `customer`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- ダンプしたテーブルの制約
+--
+
+--
+-- テーブルの制約 `borrow`
+--
+ALTER TABLE `borrow`
+  ADD CONSTRAINT `borrow_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`id`),
+  ADD CONSTRAINT `borrow_ibfk_2` FOREIGN KEY (`book_id`) REFERENCES `book` (`id`);
+
+--
+-- テーブルの制約 `favorite`
+--
+ALTER TABLE `favorite`
+  ADD CONSTRAINT `favorite_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`id`),
+  ADD CONSTRAINT `favorite_ibfk_2` FOREIGN KEY (`book_id`) REFERENCES `book` (`id`);
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
