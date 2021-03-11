@@ -8,7 +8,7 @@ try {
         PDO::MSSQL_ATTR_MULTI_STATEMENTS =>false,
 
     ];
-    $sbh = new  PDO('mysql:host=localhost;dbname=sample_db', $user,$password,$opt);
+    $sbh = new  PDO('mysql:host=localhost;dbname=book2', $user,$password,$opt);
     var_dump($dbh);
 }catch(PDOException $e){
     echo "エラー:" . $e>getMessage() . "<br>";
