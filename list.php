@@ -1,3 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>大原図書館</title>
+</head>
+<body>
+
+<h1>大原図書館予約サイト</h1>
+<h4>本一覧</h4>
 <?php
 require_once 'function.php';
 try {
@@ -21,3 +32,5 @@ try {
     exit;
 }
 ?>
+</body>
+</html>
