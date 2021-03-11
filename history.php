@@ -8,22 +8,29 @@
 <body>
     
     <?php
-    try {
-        $pdo = new PDO(
-            'mysql:dbname=testdb;host=localhost;charset=utf8mb4',
-            'root',
-            '');
-        $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    } catch (Exception $e) {
-        echo '<span class="error">エラーがありました。</span><br>';
-        echo $e->getMessage();
-        exit();
-    }
-     
-    if(!empty($_SESSION['customer'])){
+    if(isset($_SESSION['customer'])){
+        try {
+            $pdo = new PDO(
+                'mysql:dbname=testdb;host=localhost;charset=utf8mb4',
+                'root',
+                '');
+            $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         
+        } catch (Exception $e) {
+            echo '<span class="error">エラーがありました。</span><br>';
+            echo $e->getMessage();
+            exit();
+        }
+        
+        $sql = "select id from borrpw where customer_id = :customer_id";
+        $stm->bindValue(':customer_id',$_SESSION['customer']['id'],PDO::PARAM_STR);
+        $stm->execute();
+        
+        foreach($stm as $row){
+            
+        }
     }
     ?>
 </body>
