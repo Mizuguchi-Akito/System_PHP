@@ -5,9 +5,9 @@
 
     try {
         $pdo = new PDO(
-            'mysql:dbname=testdb;host=localhost;charset=utf8mb4',
-            'root',
-            '');
+            'mysql:dbname=book;host=localhost;charset=utf8mb4',
+            'book',
+            'bookpass');
         $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
@@ -17,9 +17,9 @@
         exit();
     }
 
-    $sql = "select * from customer where login = :login and password = :password";
+    $sql = "select * from customer where name = :name and password = :password";
     $stm = $pdo->prepare($sql);
-    $stm->bindValue(':login', $_POST['login'],PDO::PARAM_STR);
+    $stm->bindValue(':name', $_POST['name'],PDO::PARAM_STR);
     $stm->bindValue(':password',$_POST['password'],PDO::PARAM_STR);
     $stm->execute();
     $result = $stm->fetchAll(PDO::FETCH_ASSOC);
