@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- ホスト: 127.0.0.1
--- 生成日時: 2021-03-10 03:51:27
+-- 生成日時: 2021-03-12 01:20:16
 -- サーバのバージョン： 10.4.11-MariaDB
 -- PHP のバージョン: 7.4.6
 
@@ -94,6 +94,35 @@ CREATE TABLE `favorite` (
   `book_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+-- --------------------------------------------------------
+
+--
+-- テーブルの構造 `not_returned`
+--
+
+CREATE TABLE `not_returned` (
+  `id` int(100) NOT NULL,
+  `name` varchar(100) DEFAULT NULL,
+  `customer_id` int(100) DEFAULT NULL,
+  `date` date DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- テーブルのデータのダンプ `not_returned`
+--
+
+INSERT INTO `not_returned` (`id`, `name`, `customer_id`, `date`) VALUES
+(1, '小説', NULL, NULL),
+(2, '漫画', NULL, NULL),
+(3, 'ビジネス本', NULL, NULL),
+(4, '伝記', NULL, NULL),
+(5, '絵本', NULL, NULL),
+(6, '図鑑', NULL, NULL),
+(7, '百科事典', NULL, NULL),
+(8, '詩歌', NULL, NULL),
+(9, '参考書', NULL, NULL),
+(10, '哲学書', NULL, NULL);
+
 --
 -- ダンプしたテーブルのインデックス
 --
@@ -125,6 +154,12 @@ ALTER TABLE `favorite`
   ADD KEY `book_id` (`book_id`);
 
 --
+-- テーブルのインデックス `not_returned`
+--
+ALTER TABLE `not_returned`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- ダンプしたテーブルのAUTO_INCREMENT
 --
 
@@ -139,6 +174,12 @@ ALTER TABLE `book`
 --
 ALTER TABLE `customer`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- テーブルのAUTO_INCREMENT `not_returned`
+--
+ALTER TABLE `not_returned`
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- ダンプしたテーブルの制約
