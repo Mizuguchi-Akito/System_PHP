@@ -28,7 +28,7 @@
                 echo $e->getMessage();
                 exit();
             }
-            $sql = "select * from favorite, book where customer_id = :customer_id and book_id = :book_id";
+            $sql = "select * from favorite where customer_id = :customer_id and book_id = :book_id";
             $stm = $pdo->prepare($sql);
             $stm->bindValue(':customer_id', $_SESSION['customer']['id'], PDO::PARAM_STR);
             $stm->execute();
