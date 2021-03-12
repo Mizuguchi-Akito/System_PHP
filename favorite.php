@@ -15,12 +15,11 @@
         <th></th>
         <?php
             unset($_SESSION['customer']);
-
             try {
                 $pdo = new PDO(
-                    'mysql:dbname=testdb;host=localhost;charset=utf8mb4',
-                    'root',
-                    '');
+                    'mysql:dbname=book;host=localhost;charset=utf8mb4',
+                    'book',
+                    'bookpass');
                 $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
                 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         
@@ -29,17 +28,14 @@
                 echo $e->getMessage();
                 exit();
             }
-        
-            $sql = "select * from favorite where customer_id = :customer_id and book_id = :book_id";
+            $sql = "select * from favorite, book where customer_id = :customer_id and book_id = :book_id";
             $stm = $pdo->prepare($sql);
-            $stm->bindValue(':customer_id', $_POST['customer']['id'],PDO::PARAM_STR);
+            $stm->bindValue(':customer_id', $_SESSION['customer']['id'], PDO::PARAM_STR);
             $stm->execute();
             $result = $stm->fetchAll(PDO::FETCH_ASSOC);
             foreach ($result as $row) {
                     $id = $row['id'];
-            
         ?>
-
         <tr>
             <td><?= $row['name'] ?></td>
             <td><a href="">削除</a></td>
@@ -51,9 +47,7 @@
     <?php
     } else {
     ?>
-
     お気に入りを表示するには、ログインしてください。
-
     <?php
         }
     ?>
