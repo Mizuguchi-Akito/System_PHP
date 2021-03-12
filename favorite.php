@@ -38,7 +38,7 @@
         ?>
         <tr>
             <td><?= $row['name'] ?></td>
-            <td><a href="">削除</a></td>
+            <td><a href="favorite_delete.php">削除</a></td>
         </tr>
         <?php
         }
