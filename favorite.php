@@ -6,7 +6,6 @@
     <title>お気に入り</title>
 </head>
 <body>
-    
     <?php
     if(isset($_SESSION['customer'])){
     ?>

@@ -24,7 +24,7 @@
             exit();
         }
         
-        $sql = "select id from borrpw where customer_id = :customer_id";
+        $sql = "select id from borrow where customer_id = :customer_id";
         $stm->bindValue(':customer_id',$_SESSION['customer']['id'],PDO::PARAM_STR);
         $stm->execute();
         $result = $stm->fetchAll(PDO::FETCH_ASSOC);
