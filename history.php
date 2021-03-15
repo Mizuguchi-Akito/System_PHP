@@ -30,7 +30,21 @@
         $result = $stm->fetchAll(PDO::FETCH_ASSOC);
         
         foreach($result as $row){
-            
+            $sql1 = "select book.id as book_id, name count from book where book_id = book.id";
+					$stm1 = $pdo->prepare($sql1);
+					$stm1->bindValue(':book_id',$row['id'],PDO::PARAM_INT);
+					$stm1->execute();
+					$result1 = $stm1->fetchAll(PDO::FETCH_ASSOC); 
+    ?>
+    <table>
+            <tr>
+                <th>タイトル</th>
+            </tr>
+            <tr>
+                <td><?= $row2['name'] ?></td>
+            </tr>
+    </table>
+    <?php
         }
     }
     ?>
