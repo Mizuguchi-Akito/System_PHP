@@ -9,7 +9,6 @@
 </head>
 
 <body>
-    <?php require 'menu.php'; ?>
     <?php
 	//MySQLデータベースに接続する
 	require 'db_connect.php';
@@ -23,18 +22,22 @@
 	$stm->execute();
 	//結果の取得（連想配列で受け取る）
 	$result = $stm->fetchAll(PDO::FETCH_ASSOC);
-
+    
 	foreach ($result as $row) {
-	?>
+        ?>
+    <h1>本予約確認画面</h1>
+    <h5>本の貸し出し期限は確定してから２週間です。</h5>
+    <?php require 'menu.php'; ?>
+        <a href="./bookList.php">TOPへ戻る</a>
 		<p><img src="images/<?= $row['id'] ?>.png"></p>
 		<form action="" method="post">
+            <p><a href="./.php?id=<?= $row['id'] ?>">お気に入りに追加</a></p>
 			<p>書籍ID：<?= $row['id'] ?></p>
 			<p>書籍名：<?= $row['name'] ?></p>
 			<input type="hidden" name="id" value="<?= $row['id'] ?>">
 			<input type="hidden" name="name" value="<?= $row['name'] ?>">
 			<p><input type="submit" value="カートに追加"></p>
 		</form>
-		<p><a href="./.php?id=<?= $row['id'] ?>">お気に入りに追加</a></p>
 	<?php
 	}
 	?>

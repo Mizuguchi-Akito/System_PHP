@@ -19,6 +19,7 @@
             <section>
                 <table>
                     <h2>図書館の本一覧</h2>
+                    <?php require 'menu.php'; ?>
                     <h5>本の貸し出し期限は確定してから２週間です。</h5>
                     <p>詳細を押すと本の詳細に飛べます</p>
                     <th colspan="2"></th>

@@ -1,4 +1,4 @@
-<?php //ログイン後は表示されないように処理
+<?php
 if (!(isset($_SESSION['customer']))) {
 ?>
 <a href="login_input.php">ログイン</a>
@@ -6,7 +6,7 @@ if (!(isset($_SESSION['customer']))) {
 }
 ?>
 
-<?php //ログイン前は表示されないように処理
+<?php
 if (isset($_SESSION['customer'])) {
 ?>
     <a href="logout_input.php">ログアウト</a>
