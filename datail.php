@@ -28,9 +28,8 @@
     <h1>本予約確認画面</h1>
     <h5>本の貸し出し期限は確定してから２週間です。</h5>
     <?php require 'menu.php'; ?>
-        <a href="./bookList.php">TOPへ戻る</a>
 		<p><img src="images/<?= $row['id'] ?>.png"></p>
-		<form action="" method="post">
+		<form action="./cart_insert.php" method="post">
             <p><a href="./.php?id=<?= $row['id'] ?>">お気に入りに追加</a></p>
 			<p>書籍ID：<?= $row['id'] ?></p>
 			<p>書籍名：<?= $row['name'] ?></p>

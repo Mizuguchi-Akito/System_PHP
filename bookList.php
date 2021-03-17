@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <?php
     $link = mysqli_connect('localhost' , 'phpuser2' , '1234' , 'books2');
     if($link == null) {
@@ -29,12 +30,13 @@
                         $sql = 'SELECT * FROM book';
                         $result = mysqli_query($link, $sql);
                         while ($row = mysqli_fetch_array($result,MYSQLI_ASSOC)) {
+                            if(!$row['customer_id']){
                             echo "<br>書籍名 : {$row['name']}" , "<br>";
                             ?>
                             <p><img src="images/<?= $row['id'] ?>.png"  class="book_images"></p>
                             <a href="./datail.php?id=<?= $row['id']?>">詳細</a><br>
                             <?php
-                            
+                            }
                         }
                     ?>
                 </table>

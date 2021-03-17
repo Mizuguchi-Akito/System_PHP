@@ -9,47 +9,43 @@
 </head>
 
 <body>
-	<?php require 'menu.php'; ?>
+    <?php require 'menu.php'; ?>
 	<?php
 		if(empty($_SESSION["customer"]) || empty($_SESSION["book"])){
-			echo "ログインしていないか、カートに商品がありません";
+            echo "ログインしていないか、カートに商品がありません";
 		}else{
-			$customerId = $_SESSION["customer"]["id"];
+            $customerId = $_SESSION["customer"]["id"];
 			$pdo;
 			require_once("db_connect.php");
+            echo "予約しました<br>";
+            echo "貸し出し期限は２週間です。";
 
-			$maxId = 1;
-			foreach($pdo->query("SELECT max(id) FROM purchase;") as $row ){
-				$maxId = $row["max(id)"] + 1;
-			}
+            // echo "実行しました";
+       
+                $dataStm;
+                $dataSql = "
+                UPDATE book SET customer_id = :customer_id, date = CURRENT_DATE() WHERE id = :product_id;
+                ";
+                
+                foreach($_SESSION["book"] as $key => $value){
+                    $dataStm = $pdo->prepare($dataSql);
+                    // echo "aaaaa";
+                    $dataStm->bindValue(":product_id" , $key , PDO::PARAM_INT);
+                    // $dataStm->bindValue(":product_id2" , $key , PDO::PARAM_INT);
+                    $dataStm->bindValue(":customer_id" , $customerId , PDO::PARAM_INT);
+                    // $dataStm->bindValue(":date" , date('Y-m-d') , PDO::PARAM_STR);
+                    
+                    
+                    $dataStm->execute();
+                }
+                unset($_SESSION["book"]);
 
-			$purSql = "INSERT INTO purchase(id , customer_id ) VALUES(:id , :customer_id );";
-
-			$purStm = $pdo->prepare($purSql);
-			$purStm->bindValue(":id" , $maxId, PDO::PARAM_INT);
-			$purStm->bindValue(":customer_id" , $customerId, PDO::PARAM_INT);
-
-			if($purStm->execute()){
-				// echo "実行しました";
-				$dataStm;
-				$dataSql = "
-				INSERT INTO purchase_detail(purchase_id , product_id ,count ) 
-				VALUES(:purchase_id , :product_id ,:count);";
-
-				foreach($_SESSION["book"] as $key => $value){
-					$dataStm = $pdo->prepare($dataSql);
-					// echo "aaaaa";
-					$dataStm->bindValue(":purchase_id" , $maxId , PDO::PARAM_INT);
-					$dataStm->bindValue(":product_id" , $key , PDO::PARAM_INT);
-					$dataStm->bindValue(":count" , $value["count"], PDO::PARAM_INT);
-
-					$dataStm->execute();
-				}
-				unset($_SESSION["book"]);
-				echo "購入しました";
-			}else{
-				echo "購入に失敗しました";
-			}
+            
+            // if($purStm->execute()){
+            
+			// }else{
+			// 	echo "予約に失敗しました";
+			// }
 		}
 	?>
 </body>
