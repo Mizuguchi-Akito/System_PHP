@@ -14,7 +14,6 @@
                 'bookpass');
             $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    
         } catch (Exception $e) {
             echo '<span class="error">エラーがありました。</span><br>';
             echo $e->getMessage();
