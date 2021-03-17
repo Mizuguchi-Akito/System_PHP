@@ -1,4 +1,21 @@
-/* Sample CSS */
-p {
-  color: lime;
+h2{
+    background-color:yellow;
+
+}
+.book_images{
+    width: 100px;
+}
+  
+.menu{
+    color: red;
+}
+
+.menu:hover{
+  color: lightcoral;
+  font-size: 25px;
+  transition-duration: 0.3s;
+}
+
+#footer{
+    background-color: lightblue;
 }
