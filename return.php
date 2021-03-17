@@ -11,7 +11,7 @@ if (isset($_SESSION['customer'])) {
 		//MySQLデータベースに接続する
 		require 'db_connect.php';
 		//SQL文を作る（プレースホルダを使った式）
-		$sql = "select * from not_returned, product where customer_id = :customer_id and book_id = id";
+		$sql = "select * from not_returned, book where customer_id = :customer_id and book_id = id";
 		//プリペアードステートメントを作る
 		$stm = $pdo->prepare($sql);
 		//プリペアードステートメントに値をバインドする
