@@ -19,17 +19,17 @@
                     'mysql:dbname=book;host=localhost;charset=utf8mb4',
                     'book',
                     'bookpass');
-                $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-                $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        
-            } catch (Exception $e) {
-                echo '<span class="error">エラーがありました。</span><br>';
-                echo $e->getMessage();
-                exit();
-            }
-            $sql = "select * from favorite where customer_id = :customer_id and book_id = :book_id";
-            $stm = $pdo->prepare($sql);
-            $stm->bindValue(':customer_id', $_SESSION['customer']['id'], PDO::PARAM_STR);
+                    $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+                    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                    
+                } catch (Exception $e) {
+                    echo '<span class="error">エラーがありました。</span><br>';
+                    echo $e->getMessage();
+                    exit();
+                }
+                $sql = "select * from favorite, book where favorite.customer_id = book.id";
+                $stm = $pdo->prepare($sql);
+                $stm->bindValue('favorite.customer_id', !empty($_SESSION['customer']), PDO::PARAM_STR);
             $stm->execute();
             $result = $stm->fetchAll(PDO::FETCH_ASSOC);
             foreach ($result as $row) {
@@ -40,7 +40,7 @@
             <td><a href="favorite_delete.php">削除</a></td>
         </tr>
         <?php
-        }
+            }
         ?>
     </table>
     <?php

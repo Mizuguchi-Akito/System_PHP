@@ -5,7 +5,7 @@
     <title>お気に入り</title>
 </head>
 <body>
-    <?php
+    <?php 
     if(isset($_SESSION['customer'])){
         try {
             $pdo = new PDO(
@@ -20,18 +20,18 @@
             echo $e->getMessage();
             exit();
         }
-        $sql = "delete from favorite where customer_id = :customer_id and book_id = :book_id";
+        $sql = "insert into favorite values(:customer_id,:book_id)";
         $stm = $pdo->prepare($sql);
         $stm->bindValue(':customer_id', $_SESSION['customer']['id'], PDO::PARAM_STR);
         $stm->bindValue(':book_id', !empty($_REQUEST['id']), PDO::PARAM_STR);
         $stm->execute();
-        $result = $stm->fetchAll(PDO::FETCH_ASSOC);
     ?>
-        お気に入りから本を削除しました。
-    <?php
+        お気に入りに本を追加しました。
+        <hr>
+    <?php require 'favorite.php';
     } else {
     ?>
-        お気に入りから本を削除するには、ログインしてください。
+        お気に入りに本を追加するには、ログインしてください。
     <?php
     }
     ?>

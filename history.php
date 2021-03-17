@@ -13,8 +13,8 @@
         try {
             $pdo = new PDO(
                 'mysql:dbname=testdb;host=localhost;charset=utf8mb4',
-                'root',
-                '');
+                'book',
+                'bookpass');
             $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         
