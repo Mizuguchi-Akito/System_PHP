@@ -18,13 +18,14 @@
 			$pdo;
 			require_once("db_connect.php");
             echo "予約しました<br>";
-            echo "貸し出し期限は２週間です。";
+            echo "貸し出し期限は1週間です。";
 
             // echo "実行しました";
        
                 $dataStm;
                 $dataSql = "
                 UPDATE book SET customer_id = :customer_id, date = CURRENT_DATE() WHERE id = :product_id;
+
                 ";
                 
                 foreach($_SESSION["book"] as $key => $value){

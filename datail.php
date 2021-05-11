@@ -30,7 +30,7 @@
     <?php require 'menu.php'; ?>
 		<p><img src="images/<?= $row['id'] ?>.png"></p>
 		<form action="./cart_insert.php" method="post">
-            <p><a href="./.php?id=<?= $row['id'] ?>">お気に入りに追加</a></p>
+            <p><a href="favorite_insert.php?id=<?= $row['id'] ?>">お気に入りに追加</a></p>
 			<p>書籍ID：<?= $row['id'] ?></p>
 			<p>書籍名：<?= $row['name'] ?></p>
 			<input type="hidden" name="id" value="<?= $row['id'] ?>">
